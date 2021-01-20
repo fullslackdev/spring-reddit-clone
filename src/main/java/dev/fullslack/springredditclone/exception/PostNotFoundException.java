@@ -1,7 +1,8 @@
 package dev.fullslack.springredditclone.exception;
 
-public class PostNotFoundException extends RuntimeException {
-    public PostNotFoundException(String message) {
-        super(message);
+public class PostNotFoundException extends ItemNotFoundException {
+
+    public PostNotFoundException(Long postId) {
+        super("Post Not Found with ID - " + postId.toString());
     }
 }

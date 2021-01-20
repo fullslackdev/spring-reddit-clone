@@ -3,7 +3,6 @@ package dev.fullslack.springredditclone.service;
 import dev.fullslack.springredditclone.dto.PostRequest;
 import dev.fullslack.springredditclone.dto.PostResponse;
 import dev.fullslack.springredditclone.exception.PostNotFoundException;
-import dev.fullslack.springredditclone.exception.SpringRedditException;
 import dev.fullslack.springredditclone.exception.SubredditNotFoundException;
 import dev.fullslack.springredditclone.mapper.PostMapper;
 import dev.fullslack.springredditclone.model.Post;
@@ -45,7 +44,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public PostResponse getPost(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException(id.toString()));
+                .orElseThrow(() -> new PostNotFoundException(id));
         return postMapper.mapToDto(post);
     }
 
@@ -60,7 +59,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<PostResponse> getPostsBySubreddit(Long subredditId) {
         Subreddit subreddit = subredditRepository.findById(subredditId)
-                .orElseThrow(() -> new SubredditNotFoundException(subredditId.toString()));
+                .orElseThrow(() -> new SubredditNotFoundException(subredditId));
         return postRepository.findAllBySubreddit(subreddit)
                 .stream()
                 .map(postMapper::mapToDto)

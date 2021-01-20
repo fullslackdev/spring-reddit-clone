@@ -31,7 +31,7 @@ public class CommentService {
 
     public void save(CommentDto commentDto) {
         Post post = postRepository.findById(commentDto.getPostId())
-                .orElseThrow(() -> new PostNotFoundException(commentDto.getPostId().toString()));
+                .orElseThrow(() -> new PostNotFoundException(commentDto.getPostId()));
         User currentUser = authService.getCurrentUser();
         commentRepository.save(commentMapper.map(commentDto, post, currentUser));
 
@@ -46,7 +46,7 @@ public class CommentService {
 
     public List<CommentDto> getAllCommentsForPost(Long postId) {
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new PostNotFoundException(postId.toString()));
+                .orElseThrow(() -> new PostNotFoundException(postId));
         return commentRepository.findAllByPost(post)
                 .stream()
                 .map(commentMapper::mapToDto)
