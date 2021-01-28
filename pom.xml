@@ -16,12 +16,15 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-		<io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>
-		<org.projectlombok.version>1.18.16</org.projectlombok.version>
+		<mapstruct.version>1.4.1.Final</mapstruct.version>
+		<jsonwebtoken.version>0.11.2</jsonwebtoken.version>
+		<projectlombok.version>1.18.16</projectlombok.version>
+		<prettytime.version>5.0.0.Final</prettytime.version>
+		<springfox.version>3.0.0</springfox.version>
 	</properties>
 
 	<dependencies>
+		<!-- Spring Boot dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -50,7 +53,7 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
+			<version>${mapstruct.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -61,9 +64,11 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${org.projectlombok.version}</version>
+			<version>${projectlombok.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Spring Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -79,23 +84,31 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>${io.jsonwebtoken.version}</version>
+			<version>${jsonwebtoken.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
-			<version>${io.jsonwebtoken.version}</version>
+			<version>${jsonwebtoken.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>${io.jsonwebtoken.version}</version>
+			<version>${jsonwebtoken.version}</version>
 		</dependency>
+
 		<!-- PrettyTime dependency (replaces Time Ago which relies on Kotlin) -->
 		<dependency>
 			<groupId>org.ocpsoft.prettytime</groupId>
 			<artifactId>prettytime</artifactId>
-			<version>5.0.0.Final</version>
+			<version>${prettytime.version}</version>
+		</dependency>
+
+		<!-- Springfox dependency  -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -116,12 +129,12 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>${org.mapstruct.version}</version>
+							<version>${mapstruct.version}</version>
 						</path>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>${org.projectlombok.version}</version>
+							<version>${projectlombok.version}</version>
 						</path>
 						<!-- This is needed when using Lombok 1.8.16 and above -->
 						<path>

@@ -6,6 +6,8 @@ import dev.fullslack.springredditclone.dto.RefreshTokenRequest;
 import dev.fullslack.springredditclone.dto.RegisterRequest;
 import dev.fullslack.springredditclone.service.AuthService;
 import dev.fullslack.springredditclone.service.RefreshTokenService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 @AllArgsConstructor
+@Api( tags = "Authorization")
 public class AuthController {
 
     private final AuthService authService;
@@ -33,6 +36,7 @@ public class AuthController {
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
     }
 
+    @ApiOperation(value = "This method is used to get a JWT token.")
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
